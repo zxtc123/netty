@@ -48,6 +48,8 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
         channelGroup.writeAndFlush("【服务器】-" + channel.remoteAddress() + "离开\n");//netty会自动移除断开的channel
+
+        System.out.println(channelGroup.size());
     }
 
     @Override
