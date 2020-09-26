@@ -9,6 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * @Author: zhaoxin
  * @Date: 2020/9/10 9:15
+ * 简单聊天程序
  */
 public class MyChatServer {
     public static void main(String[] args) throws Exception {

@@ -1,6 +1,6 @@
-package com.zx.netty.fourthexample;
+package com.zx.netty.fifthexample;
 
-import com.zx.netty.thirdexample.MyChatServerInitializer;
+import com.zx.netty.fourthexample.MyServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -9,10 +9,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
+import java.net.InetSocketAddress;
+
 /**
  * @Author: zhaoxin
- * @Date: 2020/9/20 9:27
- * netty心跳机制
+ * @Date: 2020/9/26 11:00
+ * netty对websocket的支持
  */
 public class MyServer {
     public static void main(String[] args) throws Exception {
@@ -24,9 +26,9 @@ public class MyServer {
             serverBootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new MyServerInitializer());
+                    .childHandler(null);
 
-            ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
+            ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8899)).sync();
             channelFuture.channel().closeFuture().sync();
         }finally {
             workGroup.shutdownGracefully();

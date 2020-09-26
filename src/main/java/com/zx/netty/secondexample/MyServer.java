@@ -9,6 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * @Author: zhaoxin
  * @Date: 2020/9/9 9:27
+ * 基于RPC的socket编程
  */
 public class MyServer {
     public static void main(String[] args) throws Exception {
