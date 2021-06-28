@@ -20,6 +20,7 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
      * 第一个与服务端连接，不作处理
      * 之后的客户端连接，服务端打印xxx已上线，并广播xxx已上线
      * A发消息，会显示A发的消息并广播消息
+     *
      * @param ctx
      * @param msg
      * @throws Exception
@@ -28,10 +29,10 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {//任意客户端发来消息
         Channel channel = ctx.channel();
 
-        channelGroup.forEach(ch ->{
-            if(ch != channel){//不是自己发送的消息
+        channelGroup.forEach(ch -> {
+            if (ch != channel) {//不是自己发送的消息
                 ch.writeAndFlush(channel.remoteAddress() + "发送的消息：" + msg + "\n");
-            }else{
+            } else {
                 ch.writeAndFlush("【自己】" + msg + "\n");
             }
         });

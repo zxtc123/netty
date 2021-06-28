@@ -12,8 +12,8 @@ import io.netty.handler.logging.LoggingHandler;
 import java.net.InetSocketAddress;
 
 /**
- * @Author: zhaoxin
- * @Date: 2020/9/26 11:00
+ * @author: zhaoxin
+ * @date: 2020/9/26 11:00
  * netty对websocket的支持
  */
 public class MyServer {
@@ -21,7 +21,7 @@ public class MyServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workGroup = new NioEventLoopGroup();
 
-        try{
+        try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
@@ -30,7 +30,7 @@ public class MyServer {
 
             ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8899)).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             workGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }

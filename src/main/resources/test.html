@@ -6,50 +6,50 @@
 </head>
 <body>
 
-    <form onsubmit="return false;">
-        <textarea name="message" style="width: 400px; height: 200px"></textarea>
+<form onsubmit="return false;">
+    <textarea name="message" style="width: 400px; height: 200px"></textarea>
 
-        <input type="button" value="发送数据" onclick="send(this.form.message.value)">
+    <input type="button" value="发送数据" onclick="send(this.form.message.value)">
 
-        <h3>服务端输出</h3>
+    <h3>服务端输出</h3>
 
-        <textarea id="responseText" style="width: 400px; height: 300px"></textarea>
+    <textarea id="responseText" style="width: 400px; height: 300px"></textarea>
 
-        <input type="button" onclick="javascript: document.getElementById('responseText').value=''" value="清空内容">
-    </form>
+    <input type="button" onclick="javascript: document.getElementById('responseText').value=''" value="清空内容">
+</form>
 
 <script type="text/javascript">
     var socket;
 
-    if(window.WebSocket){
+    if (window.WebSocket) {
         socket = new WebSocket('ws://localhost:8899/ws');
 
-        socket.onmessage = function(event){
+        socket.onmessage = function (event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data;
         };
 
-        socket.onopen = function(event){
+        socket.onopen = function (event) {
             var ta = document.getElementById('responseText');
             ta.value = '连接开启';
         };
 
-        socket.onclose = function(event){
+        socket.onclose = function (event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + '连接关闭';
         };
-    }else{
+    } else {
         alert('浏览器不支持WebSocket');
     }
 
-    function send(message){
-        if(!window.WebSocket){
+    function send(message) {
+        if (!window.WebSocket) {
             return;
         }
 
-        if(socket.readyState == WebSocket.OPEN){
+        if (socket.readyState == WebSocket.OPEN) {
             socket.send(message);
-        }else{
+        } else {
             alert('连接尚未开启');
         }
     };

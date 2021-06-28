@@ -9,8 +9,8 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
 /**
- * @Author: zhaoxin
- * @Date: 2020/9/26 11:04
+ * @author: zhaoxin
+ * @date: 2020/9/26 11:04
  */
 public class WebSocketChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override

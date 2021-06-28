@@ -20,7 +20,7 @@ public class MyChatClient {
     public static void main(String[] args) throws Exception {
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
 
-        try{
+        try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(eventLoopGroup)
                     .channel(NioSocketChannel.class)
@@ -30,10 +30,10 @@ public class MyChatClient {
             Channel channel = channelFuture.channel();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-            for(;;){
+            for (; ; ) {
                 channel.writeAndFlush(bufferedReader.readLine() + "\r\n");
             }
-        }finally {
+        } finally {
             eventLoopGroup.shutdownGracefully();
         }
     }

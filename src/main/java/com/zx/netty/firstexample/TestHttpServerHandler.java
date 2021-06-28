@@ -17,19 +17,20 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
 
     /**
      * 响应返回给客户端
+     *
      * @param ctx
      * @param msg
      * @throws Exception
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-        if(msg instanceof HttpRequest){
-            HttpRequest httpRequest = (HttpRequest)msg;
+        if (msg instanceof HttpRequest) {
+            HttpRequest httpRequest = (HttpRequest) msg;
 
             System.out.println("请求方法名：" + httpRequest.method().name());
 
             URI uri = new URI(httpRequest.uri());
-            if("/favicon.ico".equals(uri.getPath())){
+            if ("/favicon.ico".equals(uri.getPath())) {
                 System.out.println("请求favicon.ico");
                 return;
             }

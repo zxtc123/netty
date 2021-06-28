@@ -17,7 +17,7 @@ public class TestServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup();//接收请求
         EventLoopGroup workGroup = new NioEventLoopGroup();//实际处理者
 
-        try{
+        try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
@@ -25,7 +25,7 @@ public class TestServer {
 
             ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }
